@@ -6,7 +6,7 @@
 /*   By: mfathy <mfathy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 13:45:03 by mfathy            #+#    #+#             */
-/*   Updated: 2025/12/09 16:17:47 by mfathy           ###   ########.fr       */
+/*   Updated: 2025/12/10 13:58:07 by mfathy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,14 @@ char	*get_next_line(int fd)
 	{
 		bytes_read = read(fd, read_buf, BUFFER_SIZE);
 		if (bytes_read == -1)
+		{
 			return (free_and_return(&buffer, NULL, NULL));
+		}
 		read_buf[bytes_read] = '\0';
 		if (bytes_read > 0)
 			buffer = ft_strjoin_free(buffer, read_buf);
 		if (!buffer)
 			return (NULL);
 	}
-	write(1, "Extract line\n", 13);
 	return (extract_line(&buffer));
 }
